@@ -1,10 +1,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: mann-repo-appset
-  namespace: argocd
+  name: argoapp
 spec:
   generators:
-  - git:
-      repoURL: https://github.com/oaleev/mann-gitops-config.git
-      targetRevision: HEAD
+    - list:
+        elements:
+          - cluster: demo
+            url: 'https://kubernetes.default.svc'
+  template:
+    metadata:
+      name: '{{cluster}}-app'
+    spec:
+      project: default
+      source:
+        repoURL: 'https://github.com/oaleev/mann-gitops-config.git'
+        targetRevision: HEAD
+      destination:
+        server: '{{url}}'
+        namespace: argoapp
