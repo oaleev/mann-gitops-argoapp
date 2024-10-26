@@ -1,0 +1,9 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: mann-repo-appset
+spec:
+  generators:
+  - git:
+      repoURL: https://github.com/oaleev/mann-gitops-config.git
+      targetRevision: HEAD
