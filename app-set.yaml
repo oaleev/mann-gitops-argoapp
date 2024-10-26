@@ -1,36 +1,28 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: billing-application-set
+  name: mann-app-set
   namespace: argocd
 spec:
   generators:
   - list:
       elements:
-      - namespace: staging
+      - namespace: mann-app-set
   template:      
     metadata:
       name: '{{namespace}}-app'
     spec:
-      # The project the application belongs to.
       project: default
-
-      # Source of the application manifests
       source:
         repoURL: https://github.com/oaleev/mann-gitops-config.git
         targetRevision: HEAD
         path: ./manifests
-      
-      # Destination cluster and namespace to deploy the application
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{namespace}}'
-
-      # Sync policy
       syncPolicy:
         syncOptions:
           - CreateNamespace=true  
         automated:
           prune: true
-          selfHeal: true
-      
+          selfHeal: true      
