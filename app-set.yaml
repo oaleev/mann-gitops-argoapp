@@ -19,7 +19,7 @@ spec:
       source:
         repoURL: https://github.com/oaleev/mann-gitops-config.git
         targetRevision: HEAD
-        path: ./application-sets/manifests
+        path: ./manifests
       
       # Destination cluster and namespace to deploy the application
       destination:
