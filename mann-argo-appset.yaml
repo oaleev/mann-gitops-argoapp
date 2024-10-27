@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: mann-app-set
+  name: main-appset
   namespace: argocd
 spec:
   generators:
   - list:
       elements:
-      - namespace: mann-app-set
-      - namespace: new-app-set
+      - namespace: one
+      - namespace: two
   template:      
     metadata:
       name: '{{namespace}}-app'
