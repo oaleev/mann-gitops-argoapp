@@ -17,7 +17,7 @@ spec:
       - path: manifests
   template:      
     metadata:
-      name: '{{path.basename}}-{{name}}'
+      name: '{{path}}-{{name}}'
     spec:
       project: default
 
