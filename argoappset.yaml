@@ -1,31 +1,39 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: main-appset
+  name: multi-apps
   namespace: argocd
 spec:
   generators:
-  - list:
-      elements:
-      - namespace: one
+  - git:
+      repoURL: https://github.com/oaleev/mann-gitops-config.git
+      revision: HEAD
+      directories:
+      - path: manifests
+  - git:
+      repoURL: https://github.com/oaleev/gitops-config.git
+      revision: HEAD
+      directories:
+      - path: manifests
   template:      
     metadata:
-      name: '{{namespace}}-app'
+      name: '{{path.basename}}-{{name}}'
     spec:
       project: default
+
       source:
-        repoURL: https://github.com/oaleev/mann-gitops-config.git
-        targetRevision: HEAD
-        path: ./manifests
-        repoURL: https://github.com/oaleev/gitops-config.git
-        targetRevision: HEAD
-        path: ./manifests
+        repoURL: '{{repoURL}}'
+        targetRevision: '{{revision}}'
+        path: '{{path}}'
+      
       destination:
         server: https://kubernetes.default.svc
-        namespace: '{{namespace}}'
+        namespace: '{{path.basename}}'
+
       syncPolicy:
         syncOptions:
           - CreateNamespace=true  
         automated:
           prune: true
-          selfHeal: true      
+          selfHeal: true 
+      
