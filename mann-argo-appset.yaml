@@ -8,6 +8,7 @@ spec:
   - list:
       elements:
       - namespace: mann-app-set
+      - namespace: new-app-set
   template:      
     metadata:
       name: '{{namespace}}-app'
