@@ -10,11 +10,11 @@ spec:
       revision: HEAD
       directories:
       - path: manifests
-  - git:
-      repoURL: https://github.com/oaleev/gitops-config.git
-      revision: HEAD
-      directories:
-      - path: manifests
+  #- git:
+  #    repoURL: https://github.com/oaleev/gitops-config.git
+  #    revision: HEAD
+  #    directories:
+  #    - path: manifests
   template:      
     metadata:
       name: '{{path}}-{{name}}'
