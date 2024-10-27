@@ -8,7 +8,6 @@ spec:
   - list:
       elements:
       - namespace: one
-      - namespace: two
   template:      
     metadata:
       name: '{{namespace}}-app'
