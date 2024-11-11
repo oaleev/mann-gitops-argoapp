@@ -12,13 +12,13 @@ spec:
      - path: manifests
   template:      
     metadata:
-      name: '{{path.basename}}-{{name}}'
+      name: '{{path.basename}}'
     spec:
       project: default
 
       source:
         repoURL: '{{repoURL}}'
-        targetRevision: '{{revision}}'
+        targetRevision: HEAD
         path: '{{path}}'
       
       destination:
