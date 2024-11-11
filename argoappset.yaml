@@ -17,7 +17,7 @@ spec:
       project: default
 
       source:
-        repoURL: '{{.repoURL}}'
+        repoURL: https://github.com/oaleev/gitops-config.git
         targetRevision: HEAD
         path: '{{path}}'
       
