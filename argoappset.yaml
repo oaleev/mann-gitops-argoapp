@@ -6,14 +6,10 @@ metadata:
 spec:
   generators:
   - git:
-      repoURL: https://github.com/oaleev/mann-gitops-config.git
-      revision: HEAD
-      - path: manifests/
-  #- git:
-  #    repoURL: https://github.com/oaleev/gitops-config.git
-  #    revision: HEAD
-  #    directories:
-  #    - path: manifests
+     repoURL: https://github.com/oaleev/gitops-config.git
+     revision: HEAD
+     directories:
+     - path: manifests
   template:      
     metadata:
       name: '{{path.basename}}-{{name}}'
